@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='chemgraph',
-    version='0.0.7',
+    version='0.0.8',
     description='Chemical data plotting',
     author='Eduardo Bogado',
     author_email='eduardob1999@gmail.com',
