@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from setuptools import setup
 
 # Read deps
@@ -5,16 +6,12 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='ivette',
-    version='0.0.6',
-    description='Python client for Ivette Computational chemistry and Bioinformatics project',
+    name='chemgraph',
+    version='0.0.7',
+    description='Chemical data plotting',
     author='Eduardo Bogado',
-    py_modules=['ivette', 'package.fileIO_module', 'package.IO_module', 'package.load_module',
-                'package.run_module', 'package.supabase_module'],  # Include 'ivette.py' as a module
-    install_requires=requirements,
-    entry_points={
-        'console_scripts': [
-            'ivette=ivette:main',
-        ],
-    },
+    author_email='eduardob1999@gmail.com',
+    url='https://github.com/eduardob999/chemgraph',
+    py_modules=['chemgraph', 'chemgraph.plot_module'],
+    install_requires=requirements
 )
