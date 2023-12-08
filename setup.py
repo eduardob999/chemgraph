@@ -2,12 +2,12 @@
 from setuptools import setup
 
 # Read deps
-with open('requirements.txt') as f:
+with open('requirements.txt', encoding='utf-8') as f:
     requirements = f.read().splitlines()
 
 setup(
     name='chemgraph',
-    version='0.0.8',
+    version='0.0.11',
     description='Chemical data plotting',
     author='Eduardo Bogado',
     author_email='eduardob1999@gmail.com',
