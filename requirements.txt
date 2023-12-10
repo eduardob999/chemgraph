@@ -1,8 +1,4 @@
 matplotlib
-<<<<<<< HEAD
 numpy
 pandas
 scipy
-=======
-pandas
->>>>>>> f5cf0faf2e36669bf1875c3bf7d894771daa032e
