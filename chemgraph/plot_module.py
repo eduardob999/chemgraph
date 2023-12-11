@@ -24,9 +24,12 @@ def plot_from_csv(file_path, save_path=None):
     return df
 
 
-def plot_increasing_x(df, save_path=None):
+def plot_increasing_x(df, save_path=None, *, decreasing=False):
     # Filter the DataFrame to include only rows where Column1 (X values) is increasing
-    df_increasing_x = df[df['Column1'].diff() > 0]
+    if decreasing:
+        df_increasing_x = df[df['Column1'].diff() < 0]
+    else:
+        df_increasing_x = df[df['Column1'].diff() > 0]
 
     # Sort the DataFrame based on increasing X values
     df_increasing_x_sorted = df_increasing_x.sort_values(by='Column1')
@@ -134,8 +137,8 @@ def baseline_regression_with_area(df, window_size=5, degree=1, save_path=None):
         # Display the area for each interval as a text tag
         plt.text((df['Column1'].iloc[start_idx] + df['Column1'].iloc[end_idx]) / 2,
                  0,
-                 f'Area: {area_interval:.2f}',
-                 fontsize=8, verticalalignment='bottom', horizontalalignment='center')
+                 f'Area\n{area_interval:.2f}',
+                 fontsize=6, verticalalignment='bottom', horizontalalignment='center', color='red')
 
     # Plotting
     plt.plot(df['Column1'], df['Column2_subtracted'],
@@ -158,3 +161,25 @@ def baseline_regression_with_area(df, window_size=5, degree=1, save_path=None):
         plt.show()
 
     return df
+
+
+def invert_y_axis(df, save_path=None):
+    inverted_df = df.copy()
+    inverted_df['Column2'] = -inverted_df['Column2']
+
+    # Plotting
+    plt.plot(df['Column1'], df['Column2'], label='Original Data')
+    plt.plot(inverted_df['Column1'], inverted_df['Column2'],
+             label='Inverted Data', linestyle='--', color='red')
+    plt.xlabel('X-axis Label')
+    plt.ylabel('Y-axis Label')
+    plt.title('Plot with Y-axis Inverted Data')
+    plt.legend()
+    plt.grid(True)
+
+    if save_path:
+        plt.savefig(save_path)
+    else:
+        plt.show()
+
+    return inverted_df
